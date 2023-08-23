@@ -1,4 +1,4 @@
-const handler = async (req, res) => {
+const getProductsByID = async (req, res) => {
   try {
     const id = req.query.id;
     const response = await fetch(`https://dummyjson.com/products/${id}`);
@@ -7,4 +7,4 @@ const handler = async (req, res) => {
   } catch (error) {}
 };
 
-export default handler;
+export default getProductsByID;
