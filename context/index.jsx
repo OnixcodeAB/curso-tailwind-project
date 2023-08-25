@@ -4,28 +4,44 @@ export const ShopiContext = createContext();
 
 const ShopiProvider = ({ children }) => {
   const [openDetails, setOpenDetails] = useState(false);
-  const [closeDetails, setcloseDetails] = useState(false);
+  const [openCartList, setOpenCartList] = useState(false);
+  const [prodDetails, setProdDetails] = useState({});
 
-  const [prodDetails, setProdDetails] = useState({})
+  const [cartList, setCartList] = useState([]);
 
   const handleOpenDetails = () => {
     setOpenDetails(true);
-    setcloseDetails(false);
   };
   const handleCloseDetails = () => {
-    setcloseDetails(true);
     setOpenDetails(false);
   };
+
+  const handleOpenCartList = () => {
+    setOpenCartList(true);
+  };
+
+  const handleCloseCartList = () => {
+    setOpenCartList(false);
+  };
+
+  const addToCart = ({ product }) => {
+    setCartList([...cartList, product]); // Usamos el operador de propagación para agregar el nuevo item
+  };
+  console.log(cartList);
 
   return (
     <ShopiContext.Provider
       value={{
+        cartList,
         prodDetails,
         openDetails,
-        closeDetails,
+        openCartList,
         setProdDetails,
         handleOpenDetails,
+        handleOpenCartList,
         handleCloseDetails,
+        handleCloseCartList,
+        addToCart,
       }}
     >
       {children}

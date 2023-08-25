@@ -1,17 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Card,
   CardHeader,
   CardBody,
   CardFooter,
   Typography,
-  Button,
 } from "@material-tailwind/react";
 import { FaPlus } from "react-icons/fa";
+import { BsCartCheck } from "react-icons/bs";
 import { ShopiContext } from "../../context";
 
 const CartItem = ({ product }) => {
-  const { setProdDetails,handleOpenDetails } = useContext(ShopiContext);
+  const [ItemAdded, setItemAdded] = useState(false);
+
+  const {
+    cartList,
+    setProdDetails,
+    handleOpenCartList,
+    handleOpenDetails,
+    addToCart,
+  } = useContext(ShopiContext);
+
+  useEffect(() => {
+    const index = cartList?.findIndex(({ id }) => id == product.id);
+
+    if (index != -1) {
+      setItemAdded(true);
+    } else {
+      setItemAdded(false);
+    }
+  }, [cartList]);
+
   return (
     <Card className=" justify-between max-w-[20rem] max-h-[25rem] overflow-hidden">
       <CardHeader
@@ -19,14 +38,39 @@ const CartItem = ({ product }) => {
         shadow={false}
         color="transparent"
         onClick={() => {
-          setProdDetails({ product }), handleOpenDetails();
+          setProdDetails({ product });
         }}
         className="m-0 rounded-none flex justify-center p-3 cursor-pointer"
       >
+        <button
+          disabled={ItemAdded}
+          translate="no"
+          style={{
+            position: "absolute",
+            top: "12px",
+            right: "12px",
+            padding: "8px",
+            borderRadius: "100%",
+            lineHeight: "1.5",
+          }}
+          className={`${ItemAdded ? " bg-green-600" : " bg-blue-600"}`}
+          onClick={() => {
+            addToCart({ product }), handleOpenCartList();
+          }}
+        >
+          {ItemAdded ? (
+            <BsCartCheck size={20} color="white" />
+          ) : (
+            <FaPlus size={20} color="white" />
+          )}
+        </button>
         <img
           src={`${product.image}`}
           alt={product.title}
           style={{ height: "100%" }}
+          onClick={() => {
+            handleOpenDetails();
+          }}
         />
       </CardHeader>
       <CardBody>
@@ -46,9 +90,6 @@ const CartItem = ({ product }) => {
         <Typography color="black" className="m-0 font-normal text-xl">
           ${product.price}.00
         </Typography>
-        <Button className="absolute top-3 right-3 rounded-full p-2 uppercase leading-normal backdrop-blur-sm bg-blue-600 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-          <FaPlus size={20} color="white" />
-        </Button>
       </CardFooter>
     </Card>
   );

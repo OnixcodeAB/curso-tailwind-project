@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import ProductList from "@components/ProductList";
 import ProductDetails from "@components/ProductDetails";
 import { ShopiContext } from "../context";
+import CartList from "../components/CartList";
 
 const Home = () => {
   const [products, setProducts] = useState();
 
-  const { prodDetails,openDetails } = useContext(ShopiContext);
+  const { openCartList, prodDetails,openDetails } = useContext(ShopiContext);
 
-  console.log(openDetails);
 
   useEffect(() => {
     fetch("http://localhost:3000/api/shopi/products")
@@ -29,6 +29,7 @@ const Home = () => {
       <main className="flex flex-row items-center ">
         <ProductList products={products} />
         {openDetails ? <ProductDetails prodDetails={...prodDetails} />:""}
+        {openCartList ? <CartList />:""}
       </main>
     </div>
   );

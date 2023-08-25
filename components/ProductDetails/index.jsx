@@ -5,7 +5,7 @@ import { Typography } from "@material-tailwind/react";
 
 const ProductDetails = ({ prodDetails:{product} }) => {
   const { handleCloseDetails } = useContext(ShopiContext);
-  console.log(product)
+  //console.log(product)
   return (
     <aside className=" w-96 h-[calc(97vh-68px)] top-20 flex flex-col fixed right-4 border border-black rounded-lg bg-white">
       <div className="flex justify-between items-center p-6">
