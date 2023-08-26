@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { IoMdClose } from "react-icons/io";
 import { Typography } from "@material-tailwind/react";
-import { ShopiContext } from "../../../context";
+import { ShopiContext } from "../../context";
 
 const ItemsAdded = ({ item }) => {
   const { deleteItemFromCart } = useContext(ShopiContext);

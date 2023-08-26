@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { IoMdClose } from "react-icons/io";
 import { ShopiContext } from "../../context";
 import { Typography } from "@material-tailwind/react";
-import ItemsAdded from "../CartItem/ItemsAdded";
+import ItemsAdded from "../ItemsAdded";
 
 const CartList = () => {
-  const { cartList, handleCloseCartList } = useContext(ShopiContext);
+  const { cartList, SumTotal, handleCloseCartList } = useContext(ShopiContext);
   // console.log(product)
 
   return (
@@ -26,12 +26,19 @@ const CartList = () => {
           <ItemsAdded key={item.id} item={item} />
         ))}
       </div>
-      <div>
-        <aside>
-          <Typography>Totla</Typography>
-          <Typography></Typography>
+      <div
+        className="px-6 pb-5 w-[382px] h-[120px] bg-white sticky "
+        style={{ bottom: "20px" }}
+      >
+        <aside className="flex justify-between py-1 ">
+          <Typography className="text-xl pt-1">Total</Typography>
+          <Typography className="text-xl font-bold">${SumTotal()}</Typography>
         </aside>
-        <button>Checkout</button>
+        <button className=" w-full  border border-black p-3 mt-5 rounded-md bg-black text-center">
+          <Typography variant="h5" color="white" className="font-bold">
+            Checkout
+          </Typography>
+        </button>
       </div>
     </aside>
   );

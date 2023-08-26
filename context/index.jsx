@@ -33,8 +33,16 @@ const ShopiProvider = ({ children }) => {
     console.log(index);
     setCartList(index);
   };
-  console.log(cartList);
-  console.log(cartList);
+
+  const SumTotal = () => {
+    const Sumtotal = cartList?.reduce((acc, elem) => {
+      return acc + elem.price;
+    }, 0);
+    const total = Sumtotal.toFixed(2);
+    return total;
+  };
+  //console.log(cartList);
+  //console.log(cartList);
 
   return (
     <ShopiContext.Provider
@@ -50,6 +58,7 @@ const ShopiProvider = ({ children }) => {
         handleCloseCartList,
         addToCart,
         deleteItemFromCart,
+        SumTotal,
       }}
     >
       {children}
