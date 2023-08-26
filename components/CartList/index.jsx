@@ -5,8 +5,9 @@ import { Typography } from "@material-tailwind/react";
 import ItemsAdded from "../CartItem/ItemsAdded";
 
 const CartList = () => {
-  const { cartList,handleCloseCartList } = useContext(ShopiContext);
+  const { cartList, handleCloseCartList } = useContext(ShopiContext);
   // console.log(product)
+
   return (
     <aside className=" w-96 h-[calc(97vh-68px)] top-20 flex flex-col fixed right-4 border border-black rounded-lg bg-white">
       <div className="flex justify-between items-center p-6">
@@ -20,9 +21,9 @@ const CartList = () => {
           <IoMdClose color="white" className="h-6 w-6 text-black font-bold" />
         </div>
       </div>
-      <div className="px-4 overflow-y-scroll ">
-        {cartList.map((item)=>(
-          <ItemsAdded item={item} />
+      <div className="px-4 overflow-y-auto">
+        {cartList.map((item) => (
+          <ItemsAdded key={item.id} item={item} />
         ))}
       </div>
       <div>
@@ -30,9 +31,7 @@ const CartList = () => {
           <Typography>Totla</Typography>
           <Typography></Typography>
         </aside>
-        <button>
-          Checkout
-        </button>
+        <button>Checkout</button>
       </div>
     </aside>
   );

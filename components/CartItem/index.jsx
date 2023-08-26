@@ -32,7 +32,7 @@ const CartItem = ({ product }) => {
   }, [cartList]);
 
   return (
-    <Card className=" justify-between max-w-[20rem] max-h-[25rem] overflow-hidden">
+    <Card className=" border border-gray-400 justify-between max-w-[20rem] max-h-[25rem] overflow-hidden">
       <CardHeader
         floated={false}
         shadow={false}
@@ -40,7 +40,7 @@ const CartItem = ({ product }) => {
         onClick={() => {
           setProdDetails({ product });
         }}
-        className="m-0 rounded-none flex justify-center p-3 cursor-pointer"
+        className="m-0 mt-3 rounded-none flex justify-center p-3 cursor-pointer"
       >
         <button
           disabled={ItemAdded}

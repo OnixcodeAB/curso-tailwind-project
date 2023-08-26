@@ -27,6 +27,13 @@ const ShopiProvider = ({ children }) => {
   const addToCart = ({ product }) => {
     setCartList([...cartList, product]); // Usamos el operador de propagación para agregar el nuevo item
   };
+
+  const deleteItemFromCart = (id) => {
+    const index = cartList?.filter((prod) => prod.id !== id); //retorna un nuevo array y excluye el prod que = al id que recive
+    console.log(index);
+    setCartList(index);
+  };
+  console.log(cartList);
   console.log(cartList);
 
   return (
@@ -42,6 +49,7 @@ const ShopiProvider = ({ children }) => {
         handleCloseDetails,
         handleCloseCartList,
         addToCart,
+        deleteItemFromCart,
       }}
     >
       {children}
