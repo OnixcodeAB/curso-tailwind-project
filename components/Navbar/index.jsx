@@ -91,10 +91,10 @@ function NavList2() {
         className="p-1 font-medium"
       >
         <Link
-          href="/Clothes"
+          href="/mens-clothing"
           className="flex items-center hover:text-blue-500 transition-colors"
         >
-          Clothes
+          Men's Clothing
         </Link>
       </Typography>
       <Typography

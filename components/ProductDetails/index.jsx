@@ -3,7 +3,7 @@ import { IoMdClose } from "react-icons/io";
 import { ShopiContext } from "../../context";
 import { Typography } from "@material-tailwind/react";
 
-const ProductDetails = ({ prodDetails:{product} }) => {
+const ProductDetails = ({ prodDetails: { product } }) => {
   const { handleCloseDetails } = useContext(ShopiContext);
   //console.log(product)
   return (
@@ -18,12 +18,16 @@ const ProductDetails = ({ prodDetails:{product} }) => {
         </div>
       </div>
       <div className="px-5">
-        <img src={product.image} alt="" className="w-full h-96 object-contain my-5" />
-        <Typography className="mt-2 text-center text-lg font-bold" >
+        <img
+          src={product.image}
+          alt=""
+          className="w-full h-96 object-contain my-5"
+        />
+        <Typography className="mt-2 py-3 text-center text-lg font-bold">
           ${product.price}.00
         </Typography>
-        <Typography className="mt-2 text-center" >
-          {product.title}
+        <Typography className="mt-2 py-3 text-justify">
+          {product.description}
         </Typography>
       </div>
     </aside>

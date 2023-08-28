@@ -27,7 +27,7 @@ const CartList = () => {
         ))}
       </div>
       <div
-        className="px-6 pb-5 w-[382px] h-[120px] bg-white sticky "
+        className="px-6 pb-5 w-[382px]  h-[120px] sticky bg-white "
         style={{ bottom: "20px" }}
       >
         <aside className="flex justify-between py-1 ">
