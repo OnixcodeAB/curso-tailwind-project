@@ -49,10 +49,11 @@ const ShopiProvider = ({ children }) => {
     const Sumtotal = order?.reduce((acc, elem) => {
       return acc + elem.price;
     }, 0);
-    const orders = { ...order, price: Sumtotal };
+    const totalProduct = order.length;
+    const orders = { ...order, price: Sumtotal, products:totalProduct };
     setmyOrders([...myOrders, orders]);
   };
-  //console.log(myOrders);
+  console.log(myOrders);
   //console.log(cartList);
   //console.log(cartList);
 
