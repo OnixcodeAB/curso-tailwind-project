@@ -24,13 +24,14 @@ const ShopiProvider = ({ children }) => {
     setOpenCartList(false);
   };
 
-  const addToCart = ({ product }) => {
+  const addToCart = (product) => {
     setCartList([...cartList, product]); // Usamos el operador de propagación para agregar el nuevo item
+    //console.log(product);
   };
 
   const deleteItemFromCart = (id) => {
     const index = cartList?.filter((prod) => prod.id !== id); //retorna un nuevo array y excluye el prod que = al id que recive
-    console.log(index);
+    //console.log(index);
     setCartList(index);
   };
 
@@ -41,7 +42,7 @@ const ShopiProvider = ({ children }) => {
     const total = Sumtotal.toFixed(2);
     return total;
   };
-  //console.log(cartList);
+ //console.log(cartList);
   //console.log(cartList);
 
   return (

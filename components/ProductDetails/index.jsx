@@ -3,9 +3,9 @@ import { IoMdClose } from "react-icons/io";
 import { ShopiContext } from "../../context";
 import { Typography } from "@material-tailwind/react";
 
-const ProductDetails = ({ prodDetails: { product } }) => {
+const ProductDetails = ({ prodDetails }) => {
   const { handleCloseDetails } = useContext(ShopiContext);
-  //console.log(product)
+  //console.log(prodDetails);
   return (
     <aside className=" w-96 h-[calc(97vh-68px)] top-20 flex flex-col fixed right-4 border border-black rounded-lg bg-white">
       <div className="flex justify-between items-center p-6">
@@ -19,15 +19,15 @@ const ProductDetails = ({ prodDetails: { product } }) => {
       </div>
       <div className="px-5">
         <img
-          src={product.image}
+          src={prodDetails.image}
           alt=""
-          className="w-full h-96 object-contain my-5"
+          className="w-full h-56 object-contain my-3"
         />
         <Typography className="mt-2 py-3 text-center text-lg font-bold">
-          ${product.price}.00
+          ${prodDetails.price}.00
         </Typography>
         <Typography className="mt-2 py-3 text-justify">
-          {product.description}
+          {prodDetails.description}
         </Typography>
       </div>
     </aside>

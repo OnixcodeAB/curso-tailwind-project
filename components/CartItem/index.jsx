@@ -38,7 +38,7 @@ const CartItem = ({ product }) => {
         shadow={false}
         color="transparent"
         onClick={() => {
-          setProdDetails({ product });
+          setProdDetails(product);
         }}
         className="m-0 mt-3 rounded-none flex justify-center p-3 cursor-pointer"
       >
@@ -55,7 +55,7 @@ const CartItem = ({ product }) => {
           }}
           className={`${ItemAdded ? " bg-green-600" : " bg-blue-600"}`}
           onClick={() => {
-            addToCart({ product }), handleOpenCartList();
+            addToCart(product), handleOpenCartList();
           }}
         >
           {ItemAdded ? (
@@ -88,7 +88,7 @@ const CartItem = ({ product }) => {
         </Typography>
 
         <Typography color="black" className="m-0 font-normal text-xl">
-          ${product.price}.00
+          ${product.price}
         </Typography>
       </CardFooter>
     </Card>

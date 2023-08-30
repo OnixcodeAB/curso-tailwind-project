@@ -117,10 +117,23 @@ function NavList2() {
         className="p-1 font-medium"
       >
         <Link
-          href="/Toys"
+          href="/Jewelery"
           className="flex items-center hover:text-blue-500 transition-colors"
         >
-          Toys
+          Jewelery
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <Link
+          href="/women-clothing"
+          className="flex items-center hover:text-blue-500 transition-colors"
+        >
+          Women's Clothing
         </Link>
       </Typography>
     </ul>

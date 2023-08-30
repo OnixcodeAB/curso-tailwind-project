@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     fetch("http://localhost:3000/api/shopi/products")
       .then((res) => res.json())
-      .then(setProducts);
+      .then((res)=>setProducts(res.data));
   }, []);
   //console.log(products);
   return (

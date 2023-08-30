@@ -22,12 +22,12 @@ const CartList = () => {
         </div>
       </div>
       <div className="px-4 overflow-y-auto">
-        {cartList.map((item) => (
+        {cartList?.map((item) => (
           <ItemsAdded key={item.id} item={item} />
         ))}
       </div>
       <div
-        className="px-6 pb-5 w-[382px]  h-[120px] sticky bg-white "
+        className="px-6 pb-5 w-[370px]  h-[120px] sticky bg-white "
         style={{ bottom: "20px" }}
       >
         <aside className="flex justify-between py-1 ">
