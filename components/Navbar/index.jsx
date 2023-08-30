@@ -36,7 +36,7 @@ function NavList1() {
         className="p-1 font-medium"
       >
         <Link
-          href="#"
+          href="/MyOrders"
           className="flex items-center hover:text-blue-500 transition-colors"
         >
           My Orders

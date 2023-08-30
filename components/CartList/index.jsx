@@ -5,7 +5,8 @@ import { Typography } from "@material-tailwind/react";
 import ItemsAdded from "../ItemsAdded";
 
 const CartList = () => {
-  const { cartList, SumTotal, handleCloseCartList } = useContext(ShopiContext);
+  const { cartList, SumTotal, handleCloseCartList, procedToCheckout } =
+    useContext(ShopiContext);
   // console.log(product)
 
   return (
@@ -34,7 +35,12 @@ const CartList = () => {
           <Typography className="text-xl pt-1">Total</Typography>
           <Typography className="text-xl font-bold">${SumTotal()}</Typography>
         </aside>
-        <button className=" w-full  border border-black p-3 mt-5 rounded-md bg-black text-center">
+        <button
+          className=" w-full  border border-black p-3 mt-5 rounded-md bg-black text-center"
+          onClick={() => {
+            procedToCheckout(cartList);
+          }}
+        >
           <Typography variant="h5" color="white" className="font-bold">
             Checkout
           </Typography>

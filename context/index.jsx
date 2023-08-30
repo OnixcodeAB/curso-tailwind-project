@@ -9,6 +9,8 @@ const ShopiProvider = ({ children }) => {
 
   const [cartList, setCartList] = useState([]);
 
+  const [myOrders, setmyOrders] = useState([]);
+
   const handleOpenDetails = () => {
     setOpenDetails(true);
   };
@@ -42,13 +44,23 @@ const ShopiProvider = ({ children }) => {
     const total = Sumtotal.toFixed(2);
     return total;
   };
- //console.log(cartList);
+
+  const procedToCheckout = (order) => {
+    const Sumtotal = order?.reduce((acc, elem) => {
+      return acc + elem.price;
+    }, 0);
+    const orders = { ...order, price: Sumtotal };
+    setmyOrders([...myOrders, orders]);
+  };
+  //console.log(myOrders);
+  //console.log(cartList);
   //console.log(cartList);
 
   return (
     <ShopiContext.Provider
       value={{
         cartList,
+        myOrders,
         prodDetails,
         openDetails,
         openCartList,
@@ -60,6 +72,7 @@ const ShopiProvider = ({ children }) => {
         addToCart,
         deleteItemFromCart,
         SumTotal,
+        procedToCheckout,
       }}
     >
       {children}
