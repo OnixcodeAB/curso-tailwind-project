@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Navbar,
   Collapse,
@@ -7,8 +7,13 @@ import {
 } from "@material-tailwind/react";
 import Link from "next/link";
 import { FaBars, FaClosedCaptioning, FaShoppingCart } from "react-icons/fa";
+import { BiCart } from "react-icons/bi";
+import { ShopiContext } from "../../context";
 
 function NavList1() {
+  const { cartList } = useContext(ShopiContext);
+
+  const cartItems = cartList?.length;
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -63,7 +68,23 @@ function NavList1() {
           Sign In
         </Link>
       </Typography>
-      <FaShoppingCart size={25} />
+      <div>
+        <BiCart size={35} />
+        <span
+          className="rounded-full bg-amber-500 text-black text-sm font-bold"
+          style={{
+            position: "fixed",
+            top: "2px",
+            right: "18px",
+            paddingTop: "6px",
+            paddingLeft: "11px",
+            paddingRight: "11px",
+            paddingBottom: "6px",
+          }}
+        >
+          {cartItems}
+        </span>
+      </div>
     </ul>
   );
 }
@@ -156,7 +177,7 @@ export default function NavMenu() {
 
   return (
     <Navbar className="mx-auto rounded-none max-w-full px-6 py-3">
-      <div className="flex items-center justify-between text-blue-gray-900">
+      <div className="flex items-center justify-between px-4 text-blue-gray-900">
         <div className="flex items-center">
           <Typography
             href="/"
