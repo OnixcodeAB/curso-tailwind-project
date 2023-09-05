@@ -25,10 +25,12 @@ const ShopiProvider = ({ children }) => {
 
   //useEffect To Fech Data.
   useEffect(() => {
-    fetch("http://localhost:3000/api/shopi/products")
+    fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
-      .then((res) => setProducts(res.data));
+      .then((res) => setProducts(res));
   }, []);
+
+  console.log(products);
 
   // Filter Product
 
@@ -41,7 +43,6 @@ const ShopiProvider = ({ children }) => {
   useEffect(() => {
     if (search) setFilterProduct(fitleredproductsByTitle(products, search));
   }, [products, search]);
-
 
   // functiosn to handle change in Modals, cart and Order Product
   const handleOpenDetails = () => {
