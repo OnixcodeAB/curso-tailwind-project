@@ -3,6 +3,7 @@ import { IoMdClose } from "react-icons/io";
 import { ShopiContext } from "../../context";
 import { Typography } from "@material-tailwind/react";
 import ItemsAdded from "../ItemsAdded";
+import Link from "next/link";
 
 const CartList = () => {
   const { cartList, SumTotal, handleCloseCartList, procedToCheckout } =
@@ -22,7 +23,7 @@ const CartList = () => {
           <IoMdClose color="white" className="h-6 w-6 text-black font-bold" />
         </div>
       </div>
-      <div className="px-4 overflow-y-auto">
+      <div className="px-4 flex-1 overflow-y-auto">
         {cartList?.map((item) => (
           <ItemsAdded key={item.id} item={item} />
         ))}
@@ -42,7 +43,7 @@ const CartList = () => {
           }}
         >
           <Typography variant="h5" color="white" className="font-bold">
-            Checkout
+            <Link href="/MyOrders">Checkout</Link>
           </Typography>
         </button>
       </div>

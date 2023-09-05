@@ -67,6 +67,7 @@ const CartItem = ({ product }) => {
         <img
           src={`${product.image}`}
           alt={product.title}
+          loading="lazy"
           style={{ height: "100%" }}
           onClick={() => {
             handleOpenDetails();

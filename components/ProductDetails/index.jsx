@@ -17,16 +17,16 @@ const ProductDetails = ({ prodDetails }) => {
           <IoMdClose color="white" className="h-6 w-6 text-black font-bold" />
         </div>
       </div>
-      <div className="px-5">
+      <div className="px-5 overflow-y-auto">
         <img
           src={prodDetails.image}
           alt=""
           className="w-full h-56 object-contain my-3"
         />
-        <Typography className="mt-2 py-3 text-center text-lg font-bold">
+        <Typography className="mt-2 py-3 text-center  font-bold">
           ${prodDetails.price}.00
         </Typography>
-        <Typography className="mt-2 py-3 text-justify">
+        <Typography className="mt-2 py-3 lg:text-sm text-justify ">
           {prodDetails.description}
         </Typography>
       </div>

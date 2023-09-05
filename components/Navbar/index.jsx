@@ -11,7 +11,7 @@ import { BiCart } from "react-icons/bi";
 import { ShopiContext } from "../../context";
 
 function NavList1() {
-  const { cartList } = useContext(ShopiContext);
+  const { cartList,handleOpenCartList } = useContext(ShopiContext);
 
   const cartItems = cartList?.length;
   return (
@@ -68,7 +68,7 @@ function NavList1() {
           Sign In
         </Link>
       </Typography>
-      <div>
+      <div onClick={()=>handleOpenCartList()} >
         <BiCart size={35} />
         <span
           className="rounded-full bg-amber-500 text-black text-sm font-bold"
