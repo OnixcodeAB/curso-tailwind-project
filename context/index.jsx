@@ -30,7 +30,7 @@ const ShopiProvider = ({ children }) => {
       .then((res) => setProducts(res));
   }, []);
 
-  console.log(products);
+  //console.log(products);
 
   // Filter Product
 
