@@ -5,37 +5,6 @@ import { Typography } from "@material-tailwind/react"; // Replace with the actua
 import { MdOutlineArrowBack } from "react-icons/md";
 import Link from "next/link";
 
-/* export const getStaticPaths = async () => {
-  const reponse = await fetch("https://fakestoreapi.com/products");
-  const data = await reponse.json();
-  console.log(data);
-
-  const paths = data.map(({ id }) => ({ params: { id: id.toString() } }));
-
-  console.log(paths);
-
-  return {
-    // Statically generate all paths
-    paths,
-    // Display 404 for everything else
-    fallback: false,
-  };
-};
-
-export const getStaticProps = async ({ params }) => {
-  // params contains the post `id`.
-  // If the route is like /posts/1, then params.id is 1
-  const id = params.id;
-  const response = await fetch(`https://fakestoreapi.com/products/${(id)}`);
-  const product = await response.json();
-  console.log({ products: product });
-
-  return {
-    props: {
-      product,
-    },
-  };
-}; */
 
 const MyOrderById = ({ product }) => {
   const { myOrders } = useContext(ShopiContext);
