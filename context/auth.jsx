@@ -10,6 +10,7 @@ Las rutas de Checkout, Órdenes de compra y Visualización de productos NO deben
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const [loading, setLoading] = useState(true);
   const [authState, setAuthState] = useState({
     token: "",
   });
@@ -17,11 +18,14 @@ const AuthProvider = ({ children }) => {
   // Use the JSON Web Token to asign token to the user when sign In ,
   // and use localstorage to save the token in the AuthState
 
-  const setUserAuthInfo = ({ data }) => {
-    const token = localStorage.setItem("token", data.data);
-
+  const setUserAuthInfo = (data) => {
+    //console.log(data)
+    const dataJSON = JSON.stringify(data);
+    localStorage.setItem("token", dataJSON);
+    const tokenUser = JSON.parse(localStorage.getItem("token"));
+    console.log(tokenUser);
     setAuthState({
-      token,
+      token: tokenUser,
     });
   };
 
@@ -31,9 +35,11 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        loading,
         authState,
         setAuthState: (userAuthInfo) => setUserAuthInfo(userAuthInfo),
         isUserAuthenticated,
+        setLoading,
       }}
     >
       {children}

@@ -3,7 +3,8 @@ import ProductList from "@components/ProductList";
 import ProductDetails from "@components/ProductDetails";
 import { ShopiContext } from "../context";
 import CartList from "../components/CartList";
-import ProtectRoute from "../components/ProtectRoutes";
+import { AuthContext } from "../context/auth";
+import Loading from "../components/Loading";
 
 const Home = () => {
   const {
@@ -15,6 +16,7 @@ const Home = () => {
     openDetails,
     handleSearch,
   } = useContext(ShopiContext);
+  const authContext = useContext(AuthContext);
 
   const renderView = () => {
     if (search.length > 0) {
@@ -27,6 +29,9 @@ const Home = () => {
       return <ProductList products={products} />;
     }
   };
+  if (authContext.loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="max-h-full my-7 flex flex-col items-center justify-center">
