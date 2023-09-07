@@ -3,6 +3,7 @@ import ProductList from "@components/ProductList";
 import ProductDetails from "@components/ProductDetails";
 import { ShopiContext } from "../context";
 import CartList from "../components/CartList";
+import ProtectRoute from "../components/ProtectRoutes";
 
 const Home = () => {
   const {

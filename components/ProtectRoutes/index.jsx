@@ -1,18 +1,28 @@
+"use client";
+
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
-import { authContext } from "../../context/auth";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
+import { AuthContext } from "../../context/auth";
 
 const ProtectRoute = ({ children }) => {
   const router = useRouter();
-  const AuthContext = useContext(authContext);
+  const authContext = useContext(AuthContext);
 
-  const isLoggedIn = AuthContext.isUserAuthenticated();
+  /* const getRouteToAuthenticated = () => {
+    CurrentRoute = router.
+  } */
 
-  if (isLoggedIn && window.location.pathname === "/") {
-    router.push("/");
-  } else if (!isLoggedIn && window.location.pathname !== "/") {
-    router.push("/SignIn");
-  }
+  useLayoutEffect(() => {
+    const isLoggedIn = authContext.isUserAuthenticated();
+    console.log(isLoggedIn);
+    console.log(router.pathname);
+
+    if (isLoggedIn && window.location.pathname === "/") {
+      router.push("/");
+    } else if (!isLoggedIn && window.location.pathname == "/") {
+      router.push("/SignIn");
+    }
+  }, [router, authContext]); // Asegúrate de que esta función se ejecute solo en el lado del cliente
 
   return children;
 };

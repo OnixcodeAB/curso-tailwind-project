@@ -1,16 +1,19 @@
 import "../style/global.css";
 import Layout from "@components/Layout";
 import ShopiProvider from "../context";
-import { authProvider } from "../context/auth";
+import AuthProvider from "../context/auth";
+import ProtectRoute from "../components/ProtectRoutes";
 
 export default function App({ Component, pageProps }) {
   return (
-    <ShopiProvider>
-      <authProvider>
+    <AuthProvider>
+      <ShopiProvider>
         <Layout>
-          <Component {...pageProps} />
+          <ProtectRoute>
+            <Component {...pageProps} />
+          </ProtectRoute>
         </Layout>
-      </authProvider>
-    </ShopiProvider>
+      </ShopiProvider>
+    </AuthProvider>
   );
 }

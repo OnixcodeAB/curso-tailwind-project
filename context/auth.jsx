@@ -7,14 +7,14 @@ Las rutas de Checkout, Órdenes de compra y Visualización de productos NO deben
  Mostrar común y corriente las páginas anteriormente mencionadas si el usuario ya está autenticado
 */
 
-export const authContext = createContext();
+export const AuthContext = createContext();
 
-export const authProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
     token: "",
   });
 
-  // Use the JSON Web Token to asign token to the user when is assigned,
+  // Use the JSON Web Token to asign token to the user when sign In ,
   // and use localstorage to save the token in the AuthState
 
   const setUserAuthInfo = ({ data }) => {
@@ -29,12 +29,16 @@ export const authProvider = ({ children }) => {
   const isUserAuthenticated = () => !!authState.token;
 
   return (
-    <authContext.Provider value={auth}>
-      {{
+    <AuthContext.Provider
+      value={{
         authState,
         setAuthState: (userAuthInfo) => setUserAuthInfo(userAuthInfo),
         isUserAuthenticated,
       }}
-    </authContext.Provider>
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };
+
+export default AuthProvider;
