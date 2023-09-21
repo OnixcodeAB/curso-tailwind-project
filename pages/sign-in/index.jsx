@@ -1,23 +1,52 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/auth";
+import Link from "next/link";
+import { Typography } from "@material-tailwind/react";
+import { useRouter } from "next/router";
 
+//Component to notify failed creatial to the user,
+
+const NotifyBadCredential = () => {
+  return (
+    <div className="my-4">
+      <Typography className="text-lg text-red-500 font-medium">
+        Incorrect Email or password try again
+      </Typography>
+    </div>
+  );
+};
+
+// SigIn Component
 const SignIn = () => {
-  const [email, setEmail] = useState();
-  const [User, setUser] = useState({ id: crypto.randomUUID() });
-  const authContext = useContext(AuthContext);
+  const [valueState, setvaleuStat] = useState();
+  const [badCredentials, setBadCredentials] = useState(false);
 
+  const authContext = useContext(AuthContext);
+  const router = useRouter();
+
+  // Function to save user login data
   const onChange = (e) => {
     e.preventDefault();
 
-    setUser({
-      ...User,
+    authContext.setCredentials({
+      ...authContext.credentials,
       [e.target.name]: e.target.value,
     });
   };
-  console.log(User);
+  //console.log(credentials.email);
+
+  // Function to check if the provided email and password exist
+
   const handleButtonSubmit = (e) => {
     e.preventDefault();
-    authContext.setAuthState(User);
+    const token = authContext.authState;
+    if (authContext.CheckCredentials(token["token"])) {
+      // Redirect to a different page upon successful login
+      router.push("/");
+      return true;
+    } else {
+      setBadCredentials(true);
+    }
   };
 
   return (
@@ -45,10 +74,9 @@ const SignIn = () => {
             <div className="mt-2">
               <input
                 id="email"
-                value={email}
+                value={valueState}
                 name="email"
                 type="email"
-                autoComplete="email"
                 required
                 className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 onChange={onChange}
@@ -77,9 +105,8 @@ const SignIn = () => {
               <input
                 id="password"
                 name="password"
-                value={email}
+                value={valueState}
                 type="password"
-                autoComplete="current-password"
                 required
                 className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 onChange={onChange}
@@ -88,6 +115,7 @@ const SignIn = () => {
           </div>
 
           <div>
+            {badCredentials ? <NotifyBadCredential /> : ""}
             <button
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -100,12 +128,12 @@ const SignIn = () => {
 
         <p className="mt-10 text-center text-sm text-gray-500">
           Not a member?{" "}
-          <a
-            href="#"
+          <Link
+            href="/sign-up"
             className="font-semibold leading-6 text-lg text-indigo-600 hover:text-indigo-500"
           >
             Sign UP
-          </a>
+          </Link>
         </p>
       </div>
     </div>

@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+  Children,
+  Suspense,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import {
   Card,
   CardHeader,
@@ -9,8 +15,10 @@ import {
 import { FaPlus } from "react-icons/fa";
 import { BsCartCheck } from "react-icons/bs";
 import { ShopiContext } from "../../context";
+import Loader from "../ImgLoader";
 
 const CartItem = ({ product }) => {
+  const [loading, setloading] = useState(true);
   const [ItemAdded, setItemAdded] = useState(false);
 
   const {
@@ -29,7 +37,20 @@ const CartItem = ({ product }) => {
     } else {
       setItemAdded(false);
     }
+    LoadImage();
   }, [cartList]);
+
+  const LoadImage = async () => {
+    try {
+      const imgElement = new Image();
+      imgElement.src = product.image;
+      imgElement.onload = () => {
+        setloading(false);
+      };
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Card className=" border border-gray-400 justify-between max-w-[20rem] max-h-[25rem] overflow-hidden">
@@ -64,15 +85,19 @@ const CartItem = ({ product }) => {
             <FaPlus size={20} color="white" />
           )}
         </button>
-        <img
-          src={`${product.image}`}
-          alt={product.title}
-          loading="lazy"
-          style={{ height: "100%" }}
-          onClick={() => {
-            handleOpenDetails();
-          }}
-        />
+        {loading ? (
+          <Loader />
+        ) : (
+          <img
+            src={`${product.image}`}
+            alt={product.title}
+            loading="eager"
+            style={{ height: "100%" }}
+            onClick={() => {
+              handleOpenDetails();
+            }}
+          />
+        )}
       </CardHeader>
       <CardBody>
         <Typography color="blue-gray" className="font-bold">

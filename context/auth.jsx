@@ -10,7 +10,12 @@ Las rutas de Checkout, Órdenes de compra y Visualización de productos NO deben
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
   const [loading, setLoading] = useState(true);
+  const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
   const [authState, setAuthState] = useState({
     token: "",
   });
@@ -23,22 +28,38 @@ const AuthProvider = ({ children }) => {
     const dataJSON = JSON.stringify(data);
     localStorage.setItem("token", dataJSON);
     const tokenUser = JSON.parse(localStorage.getItem("token"));
-    console.log(tokenUser);
+    //console.log(tokenUser);
     setAuthState({
       token: tokenUser,
     });
   };
 
+  const CheckCredentials = (token) => {
+    if (
+      token?.email === credentials.email &&
+      token?.password === credentials.password
+    ) {
+      setIsUserAuthenticated(true);
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   // checks if the user is authenticated or not
-  const isUserAuthenticated = () => !!authState.token;
+  //const isUserAuthenticated = () => !!authState.token;
 
   return (
     <AuthContext.Provider
       value={{
         loading,
         authState,
+        credentials,
+        setCredentials,
         setAuthState: (userAuthInfo) => setUserAuthInfo(userAuthInfo),
         isUserAuthenticated,
+        setIsUserAuthenticated,
+        CheckCredentials,
         setLoading,
       }}
     >

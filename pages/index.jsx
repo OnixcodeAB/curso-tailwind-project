@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import ProductList from "@components/ProductList";
 import ProductDetails from "@components/ProductDetails";
 import { ShopiContext } from "../context";
-import CartList from "../components/CartList";
+import CartList from "@components/CartList";
 import { AuthContext } from "../context/auth";
-import Loading from "../components/Loading";
+import Loading from "@components/Loading";
 
 const Home = () => {
   const {
@@ -29,29 +29,30 @@ const Home = () => {
       return <ProductList products={products} />;
     }
   };
+
   if (authContext.loading) {
     return <Loading />;
-  }
-
-  return (
-    <div className="max-h-full my-7 flex flex-col items-center justify-center">
-      <h1 className="text-2xl text-green-800">Exclusive Products</h1>
-      <div className="my-6">
-        <input
-          value={search}
-          placeholder="Search"
-          size="md"
-          className="flex flex-col w-80 px-2 border border-black rounded-md h-9"
-          onChange={handleSearch}
-        />
+  } else {
+    return (
+      <div className="max-h-full my-7 flex flex-col items-center justify-center">
+        <h1 className="text-2xl text-green-800">Exclusive Products</h1>
+        <div className="my-6">
+          <input
+            value={search}
+            placeholder="Search"
+            size="md"
+            className="flex flex-col w-80 px-2 border border-black rounded-md h-9"
+            onChange={handleSearch}
+          />
+        </div>
+        <main className="flex flex-row items-center ">
+          {renderView()}
+          {openDetails ? <ProductDetails prodDetails={prodDetails} /> : ""}
+          {openCartList ? <CartList /> : ""}
+        </main>
       </div>
-      <main className="flex flex-row items-center ">
-        {renderView()}
-        {openDetails ? <ProductDetails prodDetails={prodDetails} /> : ""}
-        {openCartList ? <CartList /> : ""}
-      </main>
-    </div>
-  );
+    );
+  }
 };
 
 export default Home;
