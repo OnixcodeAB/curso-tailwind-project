@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Typography } from "@material-tailwind/react";
 import { useRouter } from "next/router";
 
-//Component to notify failed creatial to the user,
+//Component to notify failed credential to the user,
 
 const NotifyBadCredential = () => {
   return (
@@ -33,7 +33,7 @@ const SignIn = () => {
       [e.target.name]: e.target.value,
     });
   };
-  //console.log(credentials.email);
+  
 
   // Function to check if the provided email and password exist
 

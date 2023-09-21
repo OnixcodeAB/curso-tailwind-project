@@ -1,10 +1,4 @@
-import React, {
-  Children,
-  Suspense,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Card,
   CardHeader,
@@ -18,8 +12,8 @@ import { ShopiContext } from "../../context";
 import Loader from "../ImgLoader";
 
 const CartItem = ({ product }) => {
-  const [loading, setloading] = useState(true);
-  const [ItemAdded, setItemAdded] = useState(false);
+  const [loading, setloading] = useState(true); // for conditional render
+  const [ItemAdded, setItemAdded] = useState(false); // to enable y disable button interaction
 
   const {
     cartList,
@@ -39,6 +33,8 @@ const CartItem = ({ product }) => {
     }
     LoadImage();
   }, [cartList]);
+
+  // function Validate if the image already load in the client side
 
   const LoadImage = async () => {
     try {

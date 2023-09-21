@@ -1,5 +1,7 @@
 import React from "react";
 
+
+// Loader Component for image
 const Loader = () => {
   return (
     <div className="space-y-8 animate-pulse md:space-y-0 md:space-x8">

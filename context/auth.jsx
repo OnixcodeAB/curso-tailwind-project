@@ -10,13 +10,14 @@ Las rutas de Checkout, Órdenes de compra y Visualización de productos NO deben
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [credentials, setCredentials] = useState({
+  const [credentials, setCredentials] = useState({ // Save to user login data in the sig-in page
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState(true);
-  const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
-  const [authState, setAuthState] = useState({
+
+  const [loading, setLoading] = useState(true); 
+  const [isUserAuthenticated, setIsUserAuthenticated] = useState(false); // validate if the user is logged
+  const [authState, setAuthState] = useState({ // Save the login data in the local storage
     token: "",
   });
 
@@ -34,7 +35,7 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  const CheckCredentials = (token) => {
+  const CheckCredentials = (token) => { // Validate if the user login details exits and is equal to the localstorage info saved
     if (
       token?.email === credentials.email &&
       token?.password === credentials.password

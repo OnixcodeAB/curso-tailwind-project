@@ -18,6 +18,7 @@ const Home = () => {
   } = useContext(ShopiContext);
   const authContext = useContext(AuthContext);
 
+  // Condictional render component to show products if user the user type in the input search if not render the entire products
   const renderView = () => {
     if (search.length > 0) {
       if (filterProduct.length > 0) {
@@ -31,6 +32,7 @@ const Home = () => {
   };
 
   if (authContext.loading) {
+    // validate if the user is logged
     return <Loading />;
   } else {
     return (

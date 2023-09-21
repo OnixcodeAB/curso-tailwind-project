@@ -5,13 +5,13 @@ import Loading from "@components/Loading";
 import { AuthContext } from "../../context/auth";
 
 const Electonics = () => {
-  const { products } = useContext(ShopiContext);
-  const authContext = useContext(AuthContext);
+  const { products } = useContext(ShopiContext); // get the products
+  const authContext = useContext(AuthContext); // get the authentication context
 
-  const electronicItems = products?.filter(
+  const electronicItems = products?.filter( // filter the products by electronics category
     (prod) => prod.category === "electronics"
   );
-  if (authContext.loading) {
+  if (authContext.loading) { // Validate if the user is logged for access to the page
     return <Loading />;
   }
   else{
